@@ -1,106 +1,53 @@
 <!DOCTYPE html>
 <html lang="he">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>HW1</title>
-    <style>
-      body {
-        direction: rtl;
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-        margin: 0;
-        padding: 0;
-      }
-      nav {
-        background-color: #333;
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-      }
-      nav a {
-        color: #fff;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: bold;
-      }
-      nav a:hover {
-        text-decoration: underline;
-      }
-      section {
-        background-color: #fff;
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        max-width: 800px;
-        display: none;
-      }
-      h2 {
-        color: #333;
-      }
-      p {
-        line-height: 1.6;
-      }
-    </style>
-  </head>
-  <body>
+</head>
+<body>
     <nav>
-      <a href="#" onclick="showSection('guy')">גיא פריאנטה</a>
-      <a href="#" onclick="showSection('tomer')">תומר לזרוביץ</a>
-      <a href="#" onclick="showSection('itamar')">איתמר קראוס</a>
-      <a href="#" onclick="showSection('chai')">חי פדידה</a>
+      <a href="#" onclick="showSection('home')">Home</a>
+      <a href="#" onclick="showSection('guy')">Guy Pariente</a>
+      <a href="#" onclick="showSection('tomer')">Tomer Lazarovitch</a>
+      <a href="#" onclick="showSection('itamar')">Itamar Kraus</a>
+      <a href="#" onclick="showSection('chay')">Chay Fadida</a>
     </nav>
 
+    <section id="home" class="home">
+      <h2>Welcome to 404 Brain Not Found Group</h2>
+      <img src="404 Brain Not Found logo.jpg" alt="Group Photo">
+      <p>To meet the group members, click the button below</p>
+      <button onclick="showSection('guy')">Meet the Group Members</button>
+    </section>
+
     <section id="guy">
-      <h2>גיא פריאנטה</h2>
-      <p><strong>תחביבים:</strong> כדורגל, כדורסל</p>
-      <p><strong>קורסים:</strong> סחר אלקטרוני, אחזור מידע</p>
-      <p>
-        <strong>מייל אישי:</strong>
-        <a href="mailto:guy.pariente@e.braude.ac.il"
-          >guy.pariente@e.braude.ac.il</a
-        >
-      </p>
+      <h2>Guy Pariente</h2>
+      <p><strong>Hobbies:</strong> Football, Basketball</p>
+      <p><strong>Courses:</strong> Electronic commerce, Information retrieval</p>
+      <p><strong>Personal Email:</strong> <a href="mailto:guy.pariente@e.braude.ac.il">guy.pariente@e.braude.ac.il</a></p>
     </section>
 
     <section id="tomer">
-      <h2>תומר לזרוביץ</h2>
-      <p><strong>תחביבים:</strong> כדורגל, קרוספיט, טניס</p>
-      <p><strong>קורסים:</strong> אחזור מידע, למידה עמוקה יוצרת</p>
-      <p>
-        <strong>מייל אישי:</strong>
-        <a href="mailto:tomer.lazarovitch@e.braude.ac.il"
-          >tomer.lazarovitch@e.braude.ac.il</a
-        >
-      </p>
+      <h2>Tomer Lazarovitch</h2>
+      <p><strong>Hobbies:</strong> Football, Tennis, Crossfit</p>
+      <p><strong>Courses:</strong> Geometric Deep Learning, Information retrieval</p>
+      <p><strong>Personal Mail:</strong> <a href="mailto:tomer.lazarovitch@e.braude.ac.il">tomer.lazarovitch@e.braude.ac.il</a></p>
     </section>
 
     <section id="itamar">
-      <h2>איתמר קראוס</h2>
-      <p><strong>תחביבים:</strong> כדורגל, טניס</p>
-      <p><strong>קורסים:</strong> סחר אלקטרוני, אחזור מידע</p>
-      <p>
-        <strong>מייל אישי:</strong>
-        <a href="mailto:itamar.kraus@e.braude.ac.il"
-          >itamar.kraus@e.braude.ac.il</a
-        >
-      </p>
+      <h2>Itamar Kraus</h2>
+      <p><strong>Hobbies:</strong> Football, Tennis</p>
+      <p><strong>Courses:</strong> Electronic commerce, Information retrieval</p>
+      <p><strong>Personal Mail:</strong> <a href="mailto:itamar.kraus@e.braude.ac.il">itamar.kraus@e.braude.ac.il</a></p>
     </section>
 
-    <section id="chai">
-      <h2>חי פדידה</h2>
-      <p><strong>תחביבים:</strong> DevOps, מוצרלה, להתפנק</p>
-      <p>
-        <strong>קורסים:</strong> משפחה והולדה בעידן הטכנולוגי, אחריות וחוק, מסכת
-        אבות
-      </p>
-      <p>
-        <strong>מייל אישי:</strong>
-        <a href="mailto:chay.fadida@e.braude.ac.il"
-          >chay.fadida@e.braude.ac.il</a
-        >
-      </p>
+    <section id="chay">
+      <h2>Chay Fadida</h2>
+      <p><strong>Hobbies:</strong> UFC, Gaming</p>
+      <p><strong>Courses:</strong> Information retrieval, Data Security and Cryptology</p>
+      <p><strong>Personal Mail:</strong> <a href="mailto:chay.fadida@e.braude.ac.il">chay.fadida@e.braude.ac.il</a></p>
     </section>
 
     <script>
@@ -115,10 +62,10 @@
         document.getElementById(sectionId).style.display = "block";
       }
 
-      // Show the first section by default
+      // Show the home section by default
       document.addEventListener("DOMContentLoaded", function () {
-        showSection("guy");
+        showSection("home");
       });
     </script>
-  </body>
+</body>
 </html>
