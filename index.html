@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HW1</title>
+    <style>
+      body {
+        direction: rtl;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+      nav {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+      }
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+      section {
+        background-color: #fff;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        display: none;
+      }
+      h2 {
+        color: #333;
+      }
+      p {
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#" onclick="showSection('guy')">גיא פריאנטה</a>
+      <a href="#" onclick="showSection('tomer')">תומר לזרוביץ</a>
+      <a href="#" onclick="showSection('itamar')">איתמר קראוס</a>
+      <a href="#" onclick="showSection('chai')">חי פדידה</a>
+    </nav>
+
+    <section id="guy">
+      <h2>גיא פריאנטה</h2>
+      <p><strong>תחביבים:</strong> כדורגל, כדורסל</p>
+      <p><strong>קורסים:</strong> סחר אלקטרוני, אחזור מידע</p>
+      <p>
+        <strong>מייל אישי:</strong>
+        <a href="mailto:guy.pariente@e.braude.ac.il"
+          >guy.pariente@e.braude.ac.il</a
+        >
+      </p>
+    </section>
+
+    <section id="tomer">
+      <h2>תומר לזרוביץ</h2>
+      <p><strong>תחביבים:</strong> כדורגל, קרוספיט, טניס</p>
+      <p><strong>קורסים:</strong> אחזור מידע, למידה עמוקה יוצרת</p>
+      <p>
+        <strong>מייל אישי:</strong>
+        <a href="mailto:tomer.lazarovitch@e.braude.ac.il"
+          >tomer.lazarovitch@e.braude.ac.il</a
+        >
+      </p>
+    </section>
+
+    <section id="itamar">
+      <h2>איתמר קראוס</h2>
+      <p><strong>תחביבים:</strong> כדורגל, טניס</p>
+      <p><strong>קורסים:</strong> סחר אלקטרוני, אחזור מידע</p>
+      <p>
+        <strong>מייל אישי:</strong>
+        <a href="mailto:itamar.kraus@e.braude.ac.il"
+          >itamar.kraus@e.braude.ac.il</a
+        >
+      </p>
+    </section>
+
+    <section id="chai">
+      <h2>חי פדידה</h2>
+      <p><strong>תחביבים:</strong> DevOps, מוצרלה, להתפנק</p>
+      <p>
+        <strong>קורסים:</strong> משפחה והולדה בעידן הטכנולוגי, אחריות וחוק, מסכת
+        אבות
+      </p>
+      <p>
+        <strong>מייל אישי:</strong>
+        <a href="mailto:chay.fadida@e.braude.ac.il"
+          >chay.fadida@e.braude.ac.il</a
+        >
+      </p>
+    </section>
+
+    <script>
+      function showSection(sectionId) {
+        // Hide all sections
+        var sections = document.querySelectorAll("section");
+        sections.forEach(function (section) {
+          section.style.display = "none";
+        });
+
+        // Show the selected section
+        document.getElementById(sectionId).style.display = "block";
+      }
+
+      // Show the first section by default
+      document.addEventListener("DOMContentLoaded", function () {
+        showSection("guy");
+      });
+    </script>
+  </body>
+</html>
