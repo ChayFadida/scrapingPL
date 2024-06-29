@@ -10,8 +10,8 @@ from enum import Enum
 from prettytable import PrettyTable
 
 class StatType(Enum):
-    APPEARANCES = "appearances"
-    TACKLE = "total_tackle"
+    APPEARANCES = "Appearances"
+    TACKLE = "Total Tackele Made"
 
 
 class PremierLeagueScraper:
@@ -118,11 +118,11 @@ class PremierLeagueScraper:
         table.field_names = ["Rank", "Player Name", "Nationality", "Club", "Stat", "Player Link"]
         for player in players:
             table.add_row([player.rank, player.name, player.nationality, player.club, player.stat, player.player_link])
-        print(f"Top {self.num_pages * 10} {self.stat_type.value} in the Premier League")
+        print(f"\n\nTop {self.num_pages * 10} {self.stat_type.value} in the Premier League")
         print(table)
 
 if __name__ == "__main__":
     stat_type = StatType.TACKLE
-    num_pages = 3
+    num_pages = 20
     scraper = PremierLeagueScraper(stat_type, num_pages=num_pages, headless=True)
     scraper.print_players_table()
