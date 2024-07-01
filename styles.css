@@ -80,4 +80,24 @@ body {
     transform: scale(0.98);
   }
 
+  
 
+  button.next-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button.next-button:hover {
+    background-color: #45a049;
+}
+
+button.next-button:active {
+    transform: scale(0.98);
+}
