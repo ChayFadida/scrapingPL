@@ -12,13 +12,21 @@ from prettytable import PrettyTable
 class StatType(Enum):
     APPEARANCES = "Appearances"
     TACKLE = "Total Tackele Made"
+    GOAL = "Total Goal Made",
+    ASSISTS = "Total Assists Made",
+    MIN = "Total Minutes Played",
+    SHOTS = "total_scoring_att"
 
 
 class PremierLeagueScraper:
     BASE_URL = "https://www.premierleague.com/stats/top/players/"
     STAT_URL_MAPPING = {
         StatType.APPEARANCES: "appearances?se=-1",
-        StatType.TACKLE: "total_tackle?se=-1"
+        StatType.TACKLE: "total_tackle?se=-1",
+        StatType.GOAL: "goals?se=-1",
+        StatType.ASSISTS: "goal_assist?se=-1",
+        StatType.MIN: "mins_played?se=-1",
+        StatType.SHOTS: "total_scoring_att?se=-1"
     }
     STAT_CLASS_MAPPING = 'stats-table__main-stat'
 
@@ -88,11 +96,11 @@ class PremierLeagueScraper:
         return players
 
     def click_next_button(self):
-        next_button = WebDriverWait(self.driver, 10).until(
+        next_button = WebDriverWait(self.driver, 15).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, ".paginationNextContainer"))
         )
         next_button.click()
-        time.sleep(5)
+        time.sleep(7)
 
     def scrape(self):
         url = self.get_stat_url()
@@ -122,7 +130,7 @@ class PremierLeagueScraper:
         print(table)
 
 if __name__ == "__main__":
-    stat_type = StatType.TACKLE
-    num_pages = 20
+    stat_type = StatType.GOAL
+    num_pages = 2
     scraper = PremierLeagueScraper(stat_type, num_pages=num_pages, headless=True)
     scraper.print_players_table()
