@@ -56,6 +56,9 @@ class PremierLeagueScraper:
             accept_recommended_button.click()
 
             time.sleep(10)
+
+            # Check for advertisement and close if present
+            self.close_advertisement()
         except:
             pass
 
@@ -102,6 +105,16 @@ class PremierLeagueScraper:
         next_button.click()
         time.sleep(7)
 
+    def close_advertisement(self):
+        try:
+            close_ad_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.ID, "advertClose"))
+            )
+            close_ad_button.click()
+            time.sleep(2)  # Give it a moment to close
+        except Exception as e:
+            print(f"No advertisement to close: {e}")
+
     def scrape(self):
         url = self.get_stat_url()
         players_data = []
@@ -131,6 +144,6 @@ class PremierLeagueScraper:
 
 if __name__ == "__main__":
     stat_type = StatType.GOAL
-    num_pages = 2
+    num_pages = 1
     scraper = PremierLeagueScraper(stat_type, num_pages=num_pages, headless=True)
     scraper.print_players_table()
