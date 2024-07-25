@@ -86,4 +86,4 @@ class PremierLeagueQueries:
 if __name__ == "__main__":
     # Example for intersection players
     PremierLeagueQueries.printTopIntersectionPlayers([StatType.SHOTS, StatType.GOAL], 100, export_csv=True)
-    PremierLeagueQueries.printTopIntersectionPlayers([StatType.SHOTS, StatType.GOAL], 100, export_csv=True)
+    PremierLeagueQueries.printTopPlayersByLastName(StatType.GOAL, "R", 100, True)
