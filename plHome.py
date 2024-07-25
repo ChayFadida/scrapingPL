@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import time
 import re
 import csv
-from collections import Counter
+from collections import Counter, defaultdict
 
 class PremierLeagueHomeScraper:
     BASE_URL = "https://www.premierleague.com/"
@@ -66,14 +66,14 @@ class PremierLeagueHomeScraper:
             pass
 
     def get_word_counts(self, text):
-        words = re.findall(r'\b\w+\b', text.lower())
+        words = re.findall(r'\b[a-zA-Z]+\b', text.lower())  # Exclude numbers
         return Counter(words)
 
-    def scrape(self, top_word):
+    def scrape(self):
         page_word_counts = {}
-        overall_word_count = Counter()
+        inverted_index = defaultdict(set)
         
-        for page in self.PAGES:
+        for page_id, page in enumerate(self.PAGES):
             url = self.BASE_URL + page
             self.driver.get(url)
             self.handle_cookies()
@@ -85,44 +85,26 @@ class PremierLeagueHomeScraper:
 
             # Get word counts
             page_word_count = self.get_word_counts(text_content)
-            page_word_counts[page] = page_word_count
-            overall_word_count.update(page_word_count)
+            page_word_counts[page_id] = page_word_count
+            
+            # Update inverted index
+            for word in page_word_count:
+                inverted_index[word].add(page_id)
 
         self.driver.quit()
+        return page_word_counts, inverted_index
 
-        # Get top top_word words per page
-        top_words_per_page = {
-            page: count.most_common(top_word)
-            for page, count in page_word_counts.items()
-        }
-
-        # Get top top_word words overall
-        top_words_overall = overall_word_count.most_common(top_word)
-
-        return top_words_per_page, top_words_overall
-
-    def export_to_csv(self, top_words_per_page, top_words_overall, filename_page='top_words_per_page.csv', filename_overall='top_words_overall.csv'):
-        # Export top words per page
-        with open(filename_page, 'w', newline='') as csvfile:
-            fieldnames = ['Page', 'Word', 'Count']
+    def export_to_csv(self, inverted_index, filename='inverted_index.csv'):
+        with open(filename, 'w', newline='') as csvfile:
+            fieldnames = ['Word', 'Page IDs']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
             writer.writeheader()
-            for page, words in top_words_per_page.items():
-                for word, count in words:
-                    writer.writerow({'Page': page, 'Word': word, 'Count': count})
-
-        # Export top words overall
-        with open(filename_overall, 'w', newline='') as csvfile:
-            fieldnames = ['Word', 'Count']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-            writer.writeheader()
-            for word, count in top_words_overall:
-                writer.writerow({'Word': word, 'Count': count})
+            for word, page_ids in inverted_index.items():
+                writer.writerow({'Word': word, 'Page IDs': ','.join(map(str, page_ids))})
 
 if __name__ == "__main__":
     scraper = PremierLeagueHomeScraper()
-    top_words_per_page, top_words_overall = scraper.scrape(20)
-    scraper.export_to_csv(top_words_per_page, top_words_overall)
-    print("Top words exported to CSV files.")
+    page_word_counts, inverted_index = scraper.scrape()
+    scraper.export_to_csv(inverted_index)
+    print("Inverted index exported to inverted_index.csv")
