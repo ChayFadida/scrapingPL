@@ -25,6 +25,11 @@ class PremierLeagueHomeScraper:
         "awards?at=1&aw=-1&se=578"
     ]
     
+    STOP_WORDS = set([
+        'a', 'also', 'and', 'are', 'from', 'he', 'how', 'lot', 'me', 'my',
+        'of', 'often', 'some', 'the', 'they', 'to', 'very'
+    ])
+    
     def __init__(self, headless=True):
         self.headless = headless
         self.driver = self._initialize_driver()
@@ -67,7 +72,8 @@ class PremierLeagueHomeScraper:
 
     def get_word_counts(self, text):
         words = re.findall(r'\b[a-zA-Z]+\b', text.lower())  # Exclude numbers
-        return Counter(words)
+        filtered_words = [word for word in words if word not in self.STOP_WORDS]
+        return Counter(filtered_words)
 
     def scrape(self):
         page_word_counts = {}
