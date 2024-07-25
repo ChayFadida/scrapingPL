@@ -1,52 +1,7 @@
-Player Name,Total Shots Made,Total Goal Made
-Wayne Rooney,"1,237",208
-Harry Kane,"1,179",213
-Sergio Agüero,"1,015",184
-Mohamed Salah,940,157
-Jermain Defoe,871,162
-Robin van Persie,862,144
-Frank Lampard,832,177
-Raheem Sterling,764,123
-Steven Gerrard,743,120
-Romelu Lukaku,724,121
-Cristiano Ronaldo,675,103
-Theo Walcott,671,80
-Son Heung-Min,668,120
-Didier Drogba,663,104
-Christian Benteke,654,86
-Gylfi Sigurdsson,652,67
-Peter Crouch,643,108
-Kevin De Bruyne,630,68
-Sadio Mané,629,111
-Clint Dempsey,627,57
-Carlos Tevez,619,84
-Jamie Vardy,619,136
-Riyad Mahrez,588,82
-Fernando Torres,581,85
-Dimitar Berbatov,577,94
-Olivier Giroud,577,90
-Roberto Firmino,573,82
-Marcus Rashford,571,83
-Danny Welbeck,565,67
-David Silva,552,60
-Luis Suárez,551,69
-Emmanuel Adebayor,549,97
-Daniel Sturridge,540,76
-Wilfried Zaha,525,68
-Michail Antonio,513,67
-Gabriel Agbonlahor,510,74
-Richarlison,510,60
-Eden Hazard,491,85
-Nicolas Anelka,488,125
-Darren Bent,478,106
-Gabriel Jesus,475,73
-Alexis Sánchez,462,63
-Yaya Touré,450,62
-Danny Ings,423,71
-Callum Wilson,413,88
-Louis Saha,376,85
-Ollie Watkins,367,59
-Kevin Nolan,365,69
-Chris Wood,350,69
-Anthony Martial,348,63
-Diogo Jota,339,57
+Player Name,Nationality,Club,Player Link,Total Shots Made,"('Total Goal Made',)"
+Wayne Rooney,England,Retired/Unknown,www.premierleague.com/players/2064/player/overview,"1,237",208
+Harry Kane,England,Retired/Unknown,www.premierleague.com/players/3960/player/overview,"1,179",213
+Sergio Agüero,Argentina,Retired/Unknown,www.premierleague.com/players/4328/player/overview,"1,015",184
+Mohamed Salah,Egypt,Liverpool,www.premierleague.com/players/5178/player/overview,940,157
+Jermain Defoe,England,Retired/Unknown,www.premierleague.com/players/1526/player/overview,871,162
+Frank Lampard,England,Retired/Unknown,www.premierleague.com/players/800/player/overview,832,177
