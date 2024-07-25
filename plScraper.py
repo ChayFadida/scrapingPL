@@ -8,6 +8,7 @@ import time
 from player import Player
 from enum import Enum
 from prettytable import PrettyTable
+import csv
 
 class StatType(Enum):
     APPEARANCES = "Appearances"
@@ -15,7 +16,7 @@ class StatType(Enum):
     GOAL = "Total Goal Made",
     ASSISTS = "Total Assists Made",
     MIN = "Total Minutes Played",
-    SHOTS = "total_scoring_att"
+    SHOTS = "Total Shots Made"
 
 
 class PremierLeagueScraper:
@@ -142,8 +143,16 @@ class PremierLeagueScraper:
         print(f"\n\nTop {self.num_pages * 10} {self.stat_type.value} in the Premier League")
         print(table)
 
+    def export_to_csv(self, filename="players_stats.csv"):
+        players = self.scrape()
+        with open(filename, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Rank", "Player Name", "Nationality", "Club", "Stat", "Player Link"])
+            for player in players:
+                writer.writerow([player.rank, player.name, player.nationality, player.club, player.stat, player.player_link])
+        print(f"Data has been exported to {filename}")
+
 if __name__ == "__main__":
-    stat_type = StatType.GOAL
-    num_pages = 1
-    scraper = PremierLeagueScraper(stat_type, num_pages=num_pages, headless=True)
-    scraper.print_players_table()
+    shoots_goals = [StatType.SHOTS, StatType.GOAL]
+    printTopIntersectionPlayers(shoots_goals, 10, True)
+    printTopPlayersByLastName(StatType.GOAL, 'R', 10, True)
