@@ -25,32 +25,38 @@ class PremierLeagueQueries:
 
         intersection_players = {player: stats for player, stats in player_stats.items() if len(stats) == len(intersectionLst)}
 
+        # Create PrettyTable with field names
         table = PrettyTable()
-        table.field_names = ["Player Name", "Nationality", "Club", "Player Link"] + [stat.value for stat in intersectionLst]
+        field_names = ["Player Name", "Nationality", "Club", "Player Link"] + [stat.value for stat in intersectionLst]
+        table.field_names = field_names
 
         for player, stats in intersection_players.items():
-            table.add_row([
+            row = [
                 player,
                 player_details[player]['nationality'],
                 player_details[player]['club'],
                 player_details[player]['player_link'],
-                *[stats.get(stat) for stat in intersectionLst]
-            ])
+            ]
+            row.extend([stats.get(stat) for stat in intersectionLst])
+            table.add_row(row)
 
         print(table)
+
         if export_csv:
             with open(filename, mode='w', newline='', encoding='utf-8') as file:
                 writer = csv.writer(file)
-                writer.writerow(["Player Name", "Nationality", "Club", "Player Link"] + [stat.value for stat in intersectionLst])
+                writer.writerow(field_names)  # Write the header row
                 for player, stats in intersection_players.items():
-                    writer.writerow([
+                    row = [
                         player,
                         player_details[player]['nationality'],
                         player_details[player]['club'],
                         player_details[player]['player_link'],
-                        *[stats.get(stat) for stat in intersectionLst]
-                    ])
+                    ]
+                    row.extend([stats.get(stat) for stat in intersectionLst])
+                    writer.writerow(row)  # Write each player's data
             print(f"Data has been exported to {filename}")
+
         return intersection_players
 
     @staticmethod
@@ -79,5 +85,5 @@ class PremierLeagueQueries:
 
 if __name__ == "__main__":
     # Example for intersection players
-    PremierLeagueQueries.printTopIntersectionPlayers([StatType.SHOTS, StatType.GOAL], 10, export_csv=True)
-    PremierLeagueQueries.printTopIntersectionPlayers([StatType.SHOTS, StatType.GOAL], 10, export_csv=True)
+    PremierLeagueQueries.printTopIntersectionPlayers([StatType.SHOTS, StatType.GOAL], 100, export_csv=True)
+    PremierLeagueQueries.printTopIntersectionPlayers([StatType.SHOTS, StatType.GOAL], 100, export_csv=True)
