@@ -173,7 +173,7 @@ class PremierLeagueHomeScraper:
                             relevant_pages.append(page_id)
             relevant_pages = list(set(relevant_pages))
 
-            fieldnames = ['Word'] + [f"Page {page_id}" for page_id in relevant_pages] + ['Page URL'] +['Total Count']
+            fieldnames = ['Word'] + [f"Page {page_id}" for page_id in relevant_pages] + ['Page URL']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
             writer.writeheader()
