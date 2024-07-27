@@ -161,22 +161,31 @@ class PremierLeagueHomeScraper:
                     total_count += count
                 row['Total Count'] = total_count
                 writer.writerow(row)
+
         with open(f"queryResults_{filename}" , 'w', newline='') as csvfile:
-            fieldnames = ['Word'] + [f"Page {page_id}" for page_id in self.PAGES.keys()] + ['Page URL'] +['Total Count']
+            relevant_pages = []
+            for word, page_ids in inverted_index.items():
+                if word in word_list:
+                    total_count = 0
+                    for page_id in self.PAGES.keys():
+                        count = page_word_counts.get(page_id, {}).get(word, 0)
+                        if count>0:
+                            relevant_pages.append(page_id)
+            relevant_pages = list(set(relevant_pages))
+
+            fieldnames = ['Word'] + [f"Page {page_id}" for page_id in relevant_pages] + ['Page URL'] +['Total Count']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
             writer.writeheader()
             for word, page_ids in inverted_index.items():
                 if word in word_list:
-                    row = {'Word': word}
-                    total_count = 0
-                    for page_id in self.PAGES.keys():
+                    for page_id in relevant_pages:
+                        row = {'Word': word}
                         count = page_word_counts.get(page_id, {}).get(word, 0)
                         row[f"Page {page_id}"] = count
                         total_count += count
                         row['Page URL'] = self.BASE_URL + self.PAGES[page_id]
-                    row['Total Count'] = total_count
-                    writer.writerow(row)
+                        writer.writerow(row)
 
 
 if __name__ == "__main__":
