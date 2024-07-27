@@ -151,8 +151,3 @@ class PremierLeagueScraper:
             for player in players:
                 writer.writerow([player.rank, player.name, player.nationality, player.club, player.stat, player.player_link])
         print(f"Data has been exported to {filename}")
-
-if __name__ == "__main__":
-    shoots_goals = [StatType.SHOTS, StatType.GOAL]
-    printTopIntersectionPlayers(shoots_goals, 10, True)
-    printTopPlayersByLastName(StatType.GOAL, 'R', 10, True)
