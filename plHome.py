@@ -11,34 +11,34 @@ from collections import Counter, defaultdict
 
 class PremierLeagueHomeScraper:
     BASE_URL = "https://www.premierleague.com/"
-    PAGES = [
-        "fixtures",
-        "results",
-        "tables",
-        "transfers",
-        "stats",
-        "news",
-        "video",
-        "tickets",
-        "clubs",
-        "players",
-        "awards?at=1&aw=-1&se=578",
-        "about",
-        "about/what-we-do",
-        "about/governance",
-        "about/statement-of-principles",
-        "about/inclusion",
-        "about/publications",
-        "about/partners",
-        "footballandcommunity/wider-football/overview",
-        "wider-football/stadium-fund",
-        "wider-football/womens-and-girls-football",
-        "wider-football/academies-and-player-welfare",
-        "history/dashboard",
-        "history/season-reviews"
-        "history/kits?se=719&cl=-1",
-        "history/origins"
-    ]
+    PAGES = {
+        1: "fixtures",
+        2 :"results",
+        3 :"tables",
+        4 :"transfers",
+        5 :"stats",
+        6 :"news",
+        7 :"video",
+        8 :"tickets",
+        9 :"clubs",
+        10 :"players",
+        11 :"awards?at=1&aw=-1&se=578",
+        12 :"about",
+        13 :"about/what-we-do",
+        14 :"about/governance",
+        15 :"about/statement-of-principles",
+        16 :"about/inclusion",
+        17 :"about/publications",
+        18 :"about/partners",
+        19 :"footballandcommunity/wider-football/overview",
+        20 :"wider-football/stadium-fund",
+        21 :"wider-football/womens-and-girls-football",
+        22 :"wider-football/academies-and-player-welfare",
+        23 :"history/dashboard",
+        24 :"history/season-reviews",
+        25 :"history/kits?se=719&cl=-1",
+        26 :"history/origins"
+    }
     
     STOP_WORDS = set([
         'a', 'also', 'and', 'are', 'from', 'he', 'how', 'lot', 'me', 'my',
@@ -96,7 +96,7 @@ class PremierLeagueHomeScraper:
         page_word_counts = {}
         inverted_index = defaultdict(set)
         
-        for page_id, page in enumerate(self.PAGES):
+        for page_id, page in self.PAGES.items():
             url = self.BASE_URL + page
             self.driver.get(url)
             self.handle_cookies()
@@ -109,17 +109,17 @@ class PremierLeagueHomeScraper:
             # Search for words in the content
             for word in word_list:
                 if word in text_content:
-                    self.toSearchPages.append(page)
+                    self.toSearchPages.append(page_id)
                     break
 
         return inverted_index
 
-    def scrape(self):
+    def scrape(self, word_list):
         page_word_counts = {}
         inverted_index = defaultdict(set)
         
-        for page_id, page in enumerate(self.toSearchPages):
-            url = self.BASE_URL + page
+        for page_id in self.toSearchPages:
+            url = self.BASE_URL + self.PAGES[page_id]
             self.driver.get(url)
             self.handle_cookies()
             
@@ -136,11 +136,12 @@ class PremierLeagueHomeScraper:
             for word in page_word_count:
                 inverted_index[word].add(page_id)
                 
-                # Find elements with the word and print their class IDs
-                elements_with_word = soup.find_all(text=re.compile(r'\b' + word + r'\b', re.IGNORECASE))
-                for element in elements_with_word:
-                    if element.parent.has_attr('class'):
-                        print(f"Word: {word}, Class ID: {element.parent['class']}, Page: {page}")
+                if word in word_list:
+                    # Find elements with the word and print their class IDs
+                    elements_with_word = soup.find_all(text=re.compile(r'\b' + word + r'\b', re.IGNORECASE))
+                    for element in elements_with_word:
+                        if element.parent.has_attr('class'):
+                            print(f"Word: {word}, Class ID: {element.parent['class']}, Page: {self.PAGES[page_id]}")
 
         self.driver.quit()
         return page_word_counts, inverted_index
@@ -162,6 +163,6 @@ if __name__ == "__main__":
     inverted_index = scraper.search_words_in_pages(word_list)
     
     # Perform full scrape and find the inverted index for all words
-    page_word_counts, full_inverted_index = scraper.scrape()
+    page_word_counts, full_inverted_index = scraper.scrape(word_list)
     scraper.export_to_csv(full_inverted_index)
     print("Full inverted index exported to inverted_index.csv")
