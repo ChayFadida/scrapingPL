@@ -146,14 +146,38 @@ class PremierLeagueHomeScraper:
         self.driver.quit()
         return page_word_counts, inverted_index
 
-    def export_to_csv(self, inverted_index, filename='inverted_index.csv'):
+    def export_to_csv(self, page_word_counts, inverted_index, word_list,filename='inverted_index.csv'):
         with open(filename, 'w', newline='') as csvfile:
-            fieldnames = ['Word', 'Page IDs']
+            fieldnames = ['Word'] + [f"Page {page_id}" for page_id in self.PAGES.keys()] + ['Total Count']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
             writer.writeheader()
             for word, page_ids in inverted_index.items():
-                writer.writerow({'Word': word, 'Page IDs': ','.join(map(str, page_ids))})
+                row = {'Word': word}
+                total_count = 0
+                for page_id in self.PAGES.keys():
+                    count = page_word_counts.get(page_id, {}).get(word, 0)
+                    row[f"Page {page_id}"] = count
+                    total_count += count
+                row['Total Count'] = total_count
+                writer.writerow(row)
+        with open(f"queryResults_{filename}" , 'w', newline='') as csvfile:
+            fieldnames = ['Word'] + [f"Page {page_id}" for page_id in self.PAGES.keys()] + ['Page URL'] +['Total Count']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            writer.writeheader()
+            for word, page_ids in inverted_index.items():
+                if word in word_list:
+                    row = {'Word': word}
+                    total_count = 0
+                    for page_id in self.PAGES.keys():
+                        count = page_word_counts.get(page_id, {}).get(word, 0)
+                        row[f"Page {page_id}"] = count
+                        total_count += count
+                        row['Page URL'] = self.BASE_URL + self.PAGES[page_id]
+                    row['Total Count'] = total_count
+                    writer.writerow(row)
+
 
 if __name__ == "__main__":
     word_list = ["emirates", "anfield", "goodison", "Stamford"]
@@ -164,5 +188,5 @@ if __name__ == "__main__":
     
     # Perform full scrape and find the inverted index for all words
     page_word_counts, full_inverted_index = scraper.scrape(word_list)
-    scraper.export_to_csv(full_inverted_index)
+    scraper.export_to_csv(page_word_counts, full_inverted_index, word_list)
     print("Full inverted index exported to inverted_index.csv")
