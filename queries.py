@@ -98,7 +98,7 @@ class PremierLeagueQueries:
     def printTopEnglandPlayersByPassesForLondonClubs(top_x, export_csv=False, filename="england_passes_london_clubs.csv"):
         start_time = time.time()
         stat = StatType.PASSES
-        num_pages = 15
+        num_pages = 10
         scraper = PremierLeagueStatScraper(stat, num_pages=num_pages, headless=True)
         players = scraper.scrape()
         
@@ -130,7 +130,7 @@ class PremierLeagueQueries:
     def printTopGoalkeepersByCleanSheetsOutsideEurope(top_x, export_csv=False, filename="goalkeepers_clean_sheets_outside_europe.csv"):
         start_time = time.time()
         stat = StatType.CLEAN_SHEETS
-        num_pages = 15
+        num_pages = 10
         scraper = PremierLeagueStatScraper(stat, num_pages=num_pages, headless=True)
         players = scraper.scrape()
         europe_countries = ["England", "Germany", "France", "Italy", "Spain", "Netherlands", "Portugal",
@@ -159,89 +159,9 @@ class PremierLeagueQueries:
         duration = end_time - start_time
         print(f"Query run time: {duration:.2f} seconds")
 
+    
     @staticmethod
-    def printTopEnglandPlayersByRedYellowCardsStillPlaying(top_x, export_csv=False, filename="england_red_yellow_cards_still_playing.csv"):
-        start_time = time.time()
-        yellow_cards_stat = StatType.YELLOW_CARDS
-        red_cards_stat = StatType.RED_CARDS
-        num_pages = 15
-        
-        scraper_yellow = PremierLeagueStatScraper(yellow_cards_stat, num_pages=num_pages, headless=True)
-        players_yellow = scraper_yellow.scrape()
-        
-        scraper_red = PremierLeagueStatScraper(red_cards_stat, num_pages=num_pages, headless=True)
-        players_red = scraper_red.scrape()
-        
-        player_stats = {}
-        player_details = {}
-
-        for player in players_yellow:
-            if player.nationality == "England" and player.club != "Retired/Unknown":
-                if player.name not in player_stats:
-                    player_stats[player.name] = {"yellow_cards": 0, "red_cards": 0}
-                    player_details[player.name] = {
-                        'nationality': player.nationality,
-                        'club': player.club,
-                        'player_link': player.player_link
-                    }
-                player_stats[player.name]["yellow_cards"] += int(player.stat)
-        
-        for player in players_red:
-            if player.nationality == "England" and player.club != "-":
-                if player.name not in player_stats:
-                    player_stats[player.name] = {"yellow_cards": 0, "red_cards": 0}
-                    player_details[player.name] = {
-                        'nationality': player.nationality,
-                        'club': player.club,
-                        'player_link': player.player_link
-                    }
-                player_stats[player.name]["red_cards"] += int(player.stat)
-
-        for player in player_stats:
-            player_stats[player]["total_cards"] = player_stats[player]["yellow_cards"] + player_stats[player]["red_cards"]
-
-        sorted_players = sorted(player_stats.items(), key=lambda x: x[1]["total_cards"], reverse=True)
-        sorted_players = sorted_players[:top_x]
-
-        table = PrettyTable()
-        table.field_names = ["Player Name", "Nationality", "Club", "Yellow Cards", "Red Cards", "Total Cards", "Player Link"]
-
-        for player, stats in sorted_players:
-            table.add_row([
-                player,
-                player_details[player]['nationality'],
-                player_details[player]['club'],
-                stats["yellow_cards"],
-                stats["red_cards"],
-                stats["total_cards"],
-                player_details[player]['player_link']
-            ])
-
-        print(f"\n\nTop {top_x} England players with the most red+yellow cards still playing in the Premier League")
-        print(table)
-
-        if export_csv:
-            with open(filename, mode='w', newline='', encoding='utf-8') as file:
-                writer = csv.writer(file)
-                writer.writerow(["Player Name", "Nationality", "Club", "Yellow Cards", "Red Cards", "Total Cards", "Player Link"])
-                for player, stats in sorted_players:
-                    writer.writerow([
-                        player,
-                        player_details[player]['nationality'],
-                        player_details[player]['club'],
-                        stats["yellow_cards"],
-                        stats["red_cards"],
-                        stats["total_cards"],
-                        player_details[player]['player_link']
-                    ])
-            print(f"Data has been exported to {filename}")
-
-        end_time = time.time()
-        duration = end_time - start_time
-        print(f"Query run time: {duration:.2f} seconds")
-        
-    @staticmethod
-    def printTransfersAstonVilla(export_csv=False, filename="goalkeepers_clean_sheets_outside_europe.csv"):
+    def printTransfersIpswichTown(export_csv=False, filename="IpswichTown_TransferIn_LoanOut.csv"):
         start_time = time.time()
         query_results =[]
         scraper = PremierLeagueTransferScraper(headless=True)
@@ -254,7 +174,7 @@ class PremierLeagueQueries:
                 table.add_row([transfer['player_name'], transfer['transfer_type'], transfer['transfer_type_link'], transfer['club']])
                 query_results.append(transfer)
 
-        print(f"\n\nTransfer In and Loan out in Aston Villa")
+        print(f"\n\nTransfer In and Loan out in Ipswich Town")
         print(table)
 
         if export_csv:
@@ -262,7 +182,7 @@ class PremierLeagueQueries:
                 writer = csv.writer(file)
                 writer.writerow(["Rank", "Player Name", "Nationality", "Club", "Stat", "Player Link"])
                 for query_result in query_results:
-                    writer.writerow([transfer['player_name'], transfer['transfer_type'], transfer['transfer_type_link'], transfer['club']])
+                    writer.writerow([query_result['player_name'], query_result['transfer_type'], query_result['transfer_type_link'], query_result['club']])
             print(f"Data has been exported to {filename}")
 
         end_time = time.time()
@@ -273,7 +193,7 @@ if __name__ == "__main__":
     # Example for intersection players
     #PremierLeagueQueries.printTopIntersectionPlayers([StatType.SHOTS, StatType.GOAL], 100, export_csv=True)
     #PremierLeagueQueries.printTopPlayersByLastName(StatType.GOAL, "R", 100, True)
-    PremierLeagueQueries.printTopEnglandPlayersByPassesForLondonClubs(10, export_csv=True)
-    PremierLeagueQueries.printTopGoalkeepersByCleanSheetsOutsideEurope(20, export_csv=True)
+    PremierLeagueQueries.printTopEnglandPlayersByPassesForLondonClubs(5, export_csv=True)
+    PremierLeagueQueries.printTopGoalkeepersByCleanSheetsOutsideEurope(10, export_csv=True)
     # PremierLeagueQueries.printTopEnglandPlayersByRedYellowCardsStillPlaying(10, export_csv=True)
-    PremierLeagueQueries.printTransfersAstonVilla(export_csv=True)
+    PremierLeagueQueries.printTransfersIpswichTown(export_csv=True)
