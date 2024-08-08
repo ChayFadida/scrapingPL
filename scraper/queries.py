@@ -190,10 +190,6 @@ class PremierLeagueQueries:
         print(f"Query run time: {duration:.2f} seconds")
 
 if __name__ == "__main__":
-    # Example for intersection players
-    #PremierLeagueQueries.printTopIntersectionPlayers([StatType.SHOTS, StatType.GOAL], 100, export_csv=True)
-    #PremierLeagueQueries.printTopPlayersByLastName(StatType.GOAL, "R", 100, True)
     PremierLeagueQueries.printTopEnglandPlayersByPassesForLondonClubs(5, export_csv=True)
     PremierLeagueQueries.printTopGoalkeepersByCleanSheetsOutsideEurope(10, export_csv=True)
-    # PremierLeagueQueries.printTopEnglandPlayersByRedYellowCardsStillPlaying(10, export_csv=True)
     PremierLeagueQueries.printTransfersIpswichTown(export_csv=True)

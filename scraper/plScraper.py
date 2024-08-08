@@ -152,15 +152,6 @@ class PremierLeagueStatScraper:
             table.add_row([player.rank, player.name, player.nationality, player.club, player.stat, player.player_link])
         print(f"\n\nTop {self.num_pages * 10} {self.stat_type.value} in the Premier League")
         print(table)
-
-    def export_to_csv_players(self, filename="players_stats.csv"):
-        players = self.scrape()
-        with open(filename, mode='w', newline='', encoding='utf-8') as file:
-            writer = csv.writer(file)
-            writer.writerow(["Rank", "Player Name", "Nationality", "Club", "Stat", "Player Link"])
-            for player in players:
-                writer.writerow([player.rank, player.name, player.nationality, player.club, player.stat, player.player_link])
-        print(f"Data has been exported to {filename}")
         
 
 class PremierLeagueTransferScraper:
