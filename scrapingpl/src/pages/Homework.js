@@ -59,53 +59,33 @@ const questions = [
     text: 'D. Choose 10 pages that the crawler returned, and which have links between them. Calculate PageRank for each page.',
     content: (
       <div>
-        <p>Here are some of the news articles from Aston Villa’s official website:</p>
+        <p>Here are some of the news articles from Aston Villa’s official website that were used for PageRank analysis PageRank for each page alpha=0.85: </p>
         <ul>
-          <li><a href="https://www.avfc.co.uk/news/2024/june/23/villa-announce/" target="_blank" rel="noopener noreferrer">Villa Announce New Signings (June 23, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/june/28/Villa-announce-Ian-Maatsen-signing/" target="_blank" rel="noopener noreferrer">Villa Announce Ian Maatsen Signing (June 28, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/july/01/Aston-Villa-confirm-double-signing/" target="_blank" rel="noopener noreferrer">Aston Villa Confirm Double Signing (July 1, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/july/01/Aston-Villa-confirm-double-signing/" target="_blank" rel="noopener noreferrer">Aston Villa Confirm Double Signing (July 1, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/july/01/Villa-confirm-Barkley-signing/" target="_blank" rel="noopener noreferrer">Villa Confirm Barkley Signing (July 1, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/july/10/philippe-coutinho-announcement/" target="_blank" rel="noopener noreferrer">Philippe Coutinho Announcement (July 10, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/july/11/O-Reilly-joins-Shrewsbury-Town-on-loan/" target="_blank" rel="noopener noreferrer">O'Reilly Joins Shrewsbury Town on Loan (July 11, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/july/19/villa-confirm-philogene-signing/" target="_blank" rel="noopener noreferrer">Villa Confirm Philogene Signing (July 19, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/july/22/villa-announce-onana-signing/" target="_blank" rel="noopener noreferrer">Villa Announce Onana Signing (July 22, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/august/02/barry-joins-stockport-county-on-loan/" target="_blank" rel="noopener noreferrer">Barry Joins Stockport County on Loan (August 2, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/august/06/Dobbin-joins-West-Bromwich-Albion-on-loan/" target="_blank" rel="noopener noreferrer">Dobbin Joins West Bromwich Albion on Loan (August 6, 2024)</a></li>
-          <li><a href="https://www.avfc.co.uk/news/2024/august/06/feeney-links-up-with-shrewsbury-town/" target="_blank" rel="noopener noreferrer">Feeney Links Up with Shrewsbury Town (August 6, 2024)</a></li>
-        </ul>
-        <p>These pages have been selected to analyze their PageRank and link structure.</p>
+        <li><a href="https://www.itfc.co.uk/news/2024/june/30/omari-is-back" target="_blank" rel="noopener noreferrer">Omari Is Back (June 30, 2024)</a>: 0.0823</li>
+        <li><a href="https://www.itfc.co.uk/news/2024/july/01/town-sign-ben-johnson" target="_blank" rel="noopener noreferrer">Town Sign Ben Johnson (July 1, 2024)</a>: 0.0823</li>
+        <li><a href="https://www.itfc.co.uk/news/2024/july/12/greaves-becomes-third-signing" target="_blank" rel="noopener noreferrer">Greaves Becomes Third Signing (July 12, 2024)</a>: 0.0823</li>
+        <li><a href="https://www.itfc.co.uk/news/2024/july/13/liam-delap-joins-town" target="_blank" rel="noopener noreferrer">Liam Delap Joins Town (July 13, 2024)</a>: 0.0823</li>
+        <li><a href="https://www.itfc.co.uk/news/2024/july/17/town-sign-keeper-muric" target="_blank" rel="noopener noreferrer">Town Sign Keeper Muric (July 17, 2024)</a>: 0.0823</li>
+        <li><a href="https://www.itfc.co.uk/news/2024/august/01/conor-townsend-joins-ipswich-town" target="_blank" rel="noopener noreferrer">Conor Townsend Joins Ipswich Town (August 1, 2024)</a>: 0.0823</li>
+        <li><a href="https://www.itfc.co.uk/news/2024/august/05/loan-move-for-elkan" target="_blank" rel="noopener noreferrer">Loan Move for Elkan (August 5, 2024)</a>: 0.504</li>
+      </ul>
+        <p>These pages have been selected to analyze their PageRank and link structure. The calculations were performed using the <code>networkx</code> library. We created a directed graph with a node for each link and a script to search hrefs from the same list of nodes within each page. As soon as we found a link to another page, we added a corresponding edge.</p>
+        <p>For PageRank calculations, we used an alpha value of 0.85. The graph illustrating the link structure and PageRank results is shown below:</p>
+        <img src="/images/graph.png" alt="PageRank Graph" style={{ maxWidth: '100%', height: 'auto', marginTop: '20px' }} />
       </div>
     )
-    
   },
   {
     id: 'q5',
-    text: 'E. Show two different users the rating from the previous section. Perform relevance feedback.',
+    text: 'E. Based on the PageRank results, assess the relevance of the pages using user feedback and suggest improvements for the queries.',
     content: (
       <div>
-        <p>Provide feedback mechanisms for users to mark relevance and adjust queries accordingly.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Rating</th>
-              <th>Feedback</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>User 1</td>
-              <td>5</td>
-              <td>Very relevant</td>
-            </tr>
-            <tr>
-              <td>User 2</td>
-              <td>4</td>
-              <td>Relevant but could be improved</td>
-            </tr>
-          </tbody>
-        </table>
+        <p>According to the PageRank results, we observe that only one page is ranked significantly higher than the others. To evaluate the relevance of the search results, we gathered feedback from two users:</p>
+        <ul>
+          <li><strong>User A:</strong> Marked all pages as relevant except for the page with the URL <a href="https://www.itfc.co.uk/news/2024/august/05/loan-move-for-elkan" target="_blank" rel="noopener noreferrer">Loan Move for Elkan (August 5, 2024)</a>.</li>
+          <li><strong>User B:</strong> Marked all pages as relevant.</li>
+        </ul>
+        <p>Based on this feedback, we can enhance the queries by incorporating additional ranking criteria. For example, we could include parameters that reflect personal relevance to users, such as whether a player is part of the senior squad or the youth team. This adjustment will better align search results with user preferences and improve the quality of the search experience.</p>
       </div>
     )
   }
