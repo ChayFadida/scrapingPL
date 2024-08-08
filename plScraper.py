@@ -208,7 +208,7 @@ class PremierLeagueTransferScraper:
         target_section = None
         for header in all_headers:
             team_name = header.find('h3', class_='transfers-club-header__team-name')
-            if team_name and "Aston Villa" in team_name.get_text(strip=True):
+            if team_name and "Ipswich Town" in team_name.get_text(strip=True):
                 target_section = header
                 break
 
@@ -248,7 +248,7 @@ class PremierLeagueTransferScraper:
             transfer = list(set(transfer))
             return transfers
         else:
-            print("Aston Villa section not found.")
+            print("Ipswich Town section not found.")
             
 
     def close_advertisement(self):
