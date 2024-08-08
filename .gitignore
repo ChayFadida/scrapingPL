@@ -1,2 +1,69 @@
 venv
 __pycache__
+# Logs
+/scrapingpl/logs
+/scrapingpl/*.log
+/scrapingpl/npm-debug.log*
+/scrapingpl/yarn-debug.log*
+/scrapingpl/yarn-error.log*
+
+# Dependency directories
+/scrapingpl/node_modules/
+
+/# Environment variables
+/scrapingpl/.env
+
+# Build output
+/scrapingpl/build/
+/scrapingpl/dist/
+
+# macOS system files
+/scrapingpl/.DS_Store
+
+# Linux system files
+/scrapingpl/*.swp
+
+# Windows system files
+/scrapingpl/Thumbs.db
+/scrapingpl/ehthumbs.db
+
+# Temporary files
+/scrapingpl/.tmp/
+/scrapingpl/.temp/
+
+# Editor directories and files
+/scrapingpl/.vscode/
+/scrapingpl/.idea/
+/scrapingpl/*.suo
+/scrapingpl/*.ntvs*
+/scrapingpl/*.njsproj
+/scrapingpl/*.sln
+
+# Test coverage
+/scrapingpl/coverage/
+
+# Parcel cache
+/scrapingpl/.cache/
+
+# Next.js
+/scrapingpl/.next/
+
+# Gatsby files
+/scrapingpl/.cache/
+/scrapingpl/public/
+
+# Styled Components artifact
+/scrapingpl/.stylelintrc
+
+# Serverless directories
+/scrapingpl/.serverless/
+
+# VS Code
+/scrapingpl/.vscode/
+
+# npm installed package directories
+/scrapingpl/.pnp
+/scrapingpl/.pnp.js
+
+# TypeScript
+/scrapingpl/*.tsbuildinfo

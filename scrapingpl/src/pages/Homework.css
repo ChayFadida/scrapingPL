@@ -1,0 +1,93 @@
+.homework-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.questions-list {
+  margin-bottom: 20px;
+}
+
+.question-item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  border-radius: 5px;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.question-item:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.question-content {
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+
+}
+
+h3, h4 {
+  margin-top: 10px;
+}
+
+p, ul, table {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+table th {
+  background-color: #f4f4f4;
+}
+
+.technology-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.technology {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.technology img {
+  max-width: 150px;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+}
+
+.technology h3 {
+  margin-top: 10px;
+}
+
+.technology p {
+  margin: 10px 0;
+}
+

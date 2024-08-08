@@ -1,0 +1,14 @@
+/* Example styles for TeamMember component */
+.team-member {
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .team-member h2 {
+    color: #333;
+  }
+  
+  .team-member p {
+    font-size: 16px;
+  }
+  
