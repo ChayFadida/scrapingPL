@@ -15,7 +15,6 @@ function App() {
           <Link to="/member/tomer">Tomer Lazarovitch</Link>
           <Link to="/member/itamar">Itamar Kraus</Link>
           <Link to="/member/chay">Chay Fadida</Link>
-          <Link to="/homework">Homework</Link>
         </nav>
 
         <Routes>

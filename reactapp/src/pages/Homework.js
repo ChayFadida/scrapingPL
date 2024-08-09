@@ -22,6 +22,16 @@ const questions = [
           <img src="/images/prettytable.png" alt="PrettyTable" />
           <p>PrettyTable: is a Python library used to create and display tables in an easy-to-read textual format, be it in the console, in a file, or in any other text format. It allows designing and organizing data in tables in an easy and convenient way.</p>
         </div>
+        <div className="technology">
+          <h3>NetworkX</h3>
+          <img src="/images/networks.png" alt="NetworkX" />
+          <p>NetworkX: a Python library used for the creation, manipulation, and study of complex networks of nodes and edges. It provides tools to work with both unweighted and weighted graphs and is often used in network analysis and graph theory.</p>
+        </div>
+        <div className="technology">
+          <h3>Matplotlib</h3>
+          <img src="/images/matplotlib.png" alt="Matplotlib" />
+          <p>Matplotlib: a comprehensive library for creating static, animated, and interactive visualizations in Python. It is widely used for generating plots, histograms, power spectra, bar charts, error charts, and scatterplots, making data visualization accessible and easy to integrate.</p>
+        </div>
       </div>
     )
   },
@@ -32,15 +42,15 @@ const questions = [
       <div>
         <h3>Query Execution Times and Analysis:</h3>
         <ul>
-          <li><strong>Top 10 Streaks of All Time</strong>: Retrieves the top 10 streaks of all time (all seasons) for players of English descent still playing for teams from London. <br /> <strong>Query Runtime</strong>: 95.85 seconds</li>
-          <li><strong>Top 20 Goalkeepers</strong>: Identifies the top 20 goalkeepers who come from outside of Europe and have the most clean sheets (games without conceding goals). <br /> <strong>Query Runtime</strong>: 94.50 seconds</li>
-          <li><strong>Aston Villa Player News</strong>: Fetches all the news related to players from Aston Villa whose transfer status is either "transfer in" or "loan out." <br /> <strong>Query Runtime</strong>: 20.06 seconds</li>
+          <li><strong>Top 5 Passes of All Time</strong>: Retrieves the top 5 passers of all time (all seasons) for players of English origin who still play for teams from London. <br /> <strong>Query Runtime</strong>: 95.85 seconds</li>
+          <li><strong>Top 10 Goalkeepers</strong>: Identifies the top 10 goalkeepers whose origins are outside of Europe and have the most clean sheets (games without conceding goals). <br /> <strong>Query Runtime</strong>: 94.50 seconds</li>
+          <li><strong>Ipswich Town Player Transfer News</strong>: Fetches all the transfer news related to players from Ipswich Town whose transfer status is either "Transfer In" or "Loan Out." <br /> <strong>Query Runtime</strong>: 20.06 seconds</li>
         </ul>
         <h4>Analysis:</h4>
-        <p>The first two queries are performed on the statistics page, which includes multiple filters and a large table. The queries need to browse and filter results from this extensive dataset, contributing to their longer runtime.</p>
+        <p>The first two queries are performed on the statistics page, which includes multiple filters and a large table. These queries need to browse and filter results from this extensive dataset, contributing to their longer runtime.</p>
         <p>The third query, on the other hand, operates on a smaller page with a more focused dataset, resulting in a significantly shorter runtime.</p>
         <h4>Optimization:</h4>
-        <p>The times for the first two queries can potentially be reduced by employing more efficient technologies or optimizing the database queries. Techniques such as indexing, query optimization, or improved data retrieval methods may help shorten the execution time.</p>
+        <p>It is possible to shorten the times for the first two queries by using more efficient technologies or optimizing the database queries. Techniques such as indexing, query optimization, or improved data retrieval methods may help reduce the execution time.</p>
       </div>
     )
   },
@@ -59,7 +69,7 @@ const questions = [
     text: 'D. Choose 10 pages that the crawler returned, and which have links between them. Calculate PageRank for each page.',
     content: (
       <div>
-        <p>Here are some of the news articles from Aston Villa’s official website that were used for PageRank analysis PageRank for each page alpha=0.85: </p>
+        <p>Here are some of the news articles from Ipswich Town's official website that were used for PageRank analysis PageRank for each page alpha=0.85: </p>
         <ul>
         <li><a href="https://www.itfc.co.uk/news/2024/june/30/omari-is-back" target="_blank" rel="noopener noreferrer">Omari Is Back (June 30, 2024)</a>: 0.0823</li>
         <li><a href="https://www.itfc.co.uk/news/2024/july/01/town-sign-ben-johnson" target="_blank" rel="noopener noreferrer">Town Sign Ben Johnson (July 1, 2024)</a>: 0.0823</li>
