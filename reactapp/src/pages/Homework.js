@@ -3,7 +3,7 @@ import './Homework.css'; // Import CSS for Homework component
 
 const questions = [
   {
-    id: 'q1',
+    id: 'Q1',
     text: 'A. Write down different interesting technologies that you used in the project.',
     content: (
       <div className="technology-list">
@@ -36,13 +36,13 @@ const questions = [
     )
   },
   {
-    id: 'q2',
+    id: 'Q2',
     text: 'B. How long did your queries run? What does it depend on? Do you think this time can be improved?',
     content: (
       <div>
         <h3>Query Execution Times and Analysis:</h3>
         <ul>
-          <li><strong>Top 5 Passes of All Time</strong>: Retrieves the top 5 passers of all time (all seasons) for players of English origin who still play for teams from London. <br /> <strong>Query Runtime</strong>: 95.85 seconds</li>
+          <li><strong>Top 5 Passes of All Time</strong>: Retrieves the top 5 passers of all time (all seasons) for players of English origin who still play for teams in London. <br /> <strong>Query Runtime</strong>: 95.85 seconds</li>
           <li><strong>Top 10 Goalkeepers</strong>: Identifies the top 10 goalkeepers whose origins are outside of Europe and have the most clean sheets (games without conceding goals). <br /> <strong>Query Runtime</strong>: 94.50 seconds</li>
           <li><strong>Ipswich Town Player Transfer News</strong>: Fetches all the transfer news related to players from Ipswich Town whose transfer status is either "Transfer In" or "Loan Out." <br /> <strong>Query Runtime</strong>: 20.06 seconds</li>
         </ul>
@@ -55,7 +55,7 @@ const questions = [
     )
   },
   {
-    id: 'q3',
+    id: 'Q3',
     text: 'C. Are there hubs in the returned pages? Authorities?',
     content: (
       <div>
@@ -65,7 +65,7 @@ const questions = [
     )
   },
   {
-    id: 'q4',
+    id: 'Q4',
     text: 'D. Choose 10 pages that the crawler returned, and which have links between them. Calculate PageRank for each page.',
     content: (
       <div>
@@ -79,6 +79,7 @@ const questions = [
         <li><a href="https://www.itfc.co.uk/news/2024/august/01/conor-townsend-joins-ipswich-town" target="_blank" rel="noopener noreferrer">Conor Townsend Joins Ipswich Town (August 1, 2024)</a>: 0.0823</li>
         <li><a href="https://www.itfc.co.uk/news/2024/august/05/loan-move-for-elkan" target="_blank" rel="noopener noreferrer">Loan Move for Elkan (August 5, 2024)</a>: 0.504</li>
       </ul>
+        <p href="https://github.com/ChayFadida/scrapingPL/blob/master/scraper/PageRankQ3.py"> Link to the script</p> https://github.com/ChayFadida/scrapingPL/blob/master/scraper/queries.py
         <p>These pages have been selected to analyze their PageRank and link structure. The calculations were performed using the <code>networkx</code> library. We created a directed graph with a node for each link and a script to search hrefs from the same list of nodes within each page. As soon as we found a link to another page, we added a corresponding edge.</p>
         <p>For PageRank calculations, we used an alpha value of 0.85. The graph illustrating the link structure and PageRank results is shown below:</p>
         <img src="/images/graph.png" alt="PageRank Graph" style={{ maxWidth: '100%', height: 'auto', marginTop: '20px' }} />
@@ -86,7 +87,7 @@ const questions = [
     )
   },
   {
-    id: 'q5',
+    id: 'Q5',
     text: 'E. Based on the PageRank results, assess the relevance of the pages using user feedback and suggest improvements for the queries.',
     content: (
       <div>
@@ -120,9 +121,16 @@ const Homework = () => {
       </div>
       <div className="question-content">
         {selectedQuestion && (
-          <div>
-            {questions.find(q => q.id === selectedQuestion)?.content}
-          </div>
+          <>
+            {/* Display the selected question text */}
+            <h2>{questions.find(q => q.id === selectedQuestion)?.id}</h2>
+            {/* Display the "Answer" label */}
+            <p><strong>Answer:</strong></p>
+            {/* Display the content of the selected question */}
+            <div>
+              {questions.find(q => q.id === selectedQuestion)?.content}
+            </div>
+          </>
         )}
       </div>
     </div>

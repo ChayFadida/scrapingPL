@@ -8,7 +8,7 @@ const Home = () => {
       <img src="/images/logo.jpg" alt="Logo of 404 Brain Not Found Group" />
       <div style={{ textAlign: 'center' }}>
         <Link to="/homework">
-          <button className="navigate-button">HomeWork</button>
+          <button className="navigate-button">HomeWork 3</button>
         </Link>
       </div>
     </section>
