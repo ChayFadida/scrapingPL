@@ -19,9 +19,9 @@ const questions = [
       <div>
         <h3>Query Execution Times and Analysis:</h3>
         <ul>
-          <li><strong>Top 5 Passes of All Time</strong>: Retrieves the top 5 passers of all time (all seasons) for players of English origin who still play for teams in London. <br /> <strong>Query Runtime</strong>: 95.85 seconds</li>
-          <li><strong>Top 10 Goalkeepers</strong>: Identifies the top 10 goalkeepers whose origins are outside of Europe and have the most clean sheets (games without conceding goals). <br /> <strong>Query Runtime</strong>: 94.50 seconds</li>
-          <li><strong>Ipswich Town Player Transfer News</strong>: Fetches all the transfer news related to players from Ipswich Town whose transfer status is either "Transfer In" or "Loan Out." <br /> <strong>Query Runtime</strong>: 20.06 seconds</li>
+          <li><strong>Top 5 Passes of All Time</strong>: Retrieves the top 5 passers of all time (all seasons) for players of English origin who still play for teams in London. <br /></li>
+          <li><strong>Top 10 Goalkeepers</strong>: Identifies the top 10 goalkeepers whose origins are outside of Europe and have the most clean sheets (games without conceding goals). <br /></li>
+          <li><strong>Ipswich Town Player Transfer News</strong>: Fetches all the transfer news related to players from Ipswich Town whose transfer status is either "Transfer In" or "Loan Out." <br /></li>
         </ul>
         <h4>Required information query 1:</h4>
         <p>List of London clubs.</p>
