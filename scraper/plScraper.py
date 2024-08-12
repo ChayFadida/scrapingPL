@@ -206,13 +206,6 @@ class PremierLeagueTransferScraper:
         if target_section:
             # Find the table following this specific section
             table_body = target_section.next_sibling.find('tbody')
-            
-            # if isinstance(table, list) or isinstance(table, ResultSet):
-            #     if table:
-            #         table = table[0]  # Take the first table if multiple are found
-            # Extract data from the table
-            # if table:
-            #     table_body = table.find('tbody')
             rows = table_body.find_all('tr')
 
             for row in rows:
