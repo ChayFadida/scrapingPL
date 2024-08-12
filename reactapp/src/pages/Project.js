@@ -14,7 +14,7 @@ const questions = [
   },
   {
     id: 'Q2',
-    text: '2. How long did your queries run? What does it depend on? Do you think this time can be improved?',
+    text: '2. Write down three interesting queries that you would like to receive an answer to on the site, and that the site does not currently answer. For each such query, specify the details of the information required to answer the query.',
     content: (
       <div>
         <h3>Query Execution Times and Analysis:</h3>
@@ -23,11 +23,13 @@ const questions = [
           <li><strong>Top 10 Goalkeepers</strong>: Identifies the top 10 goalkeepers whose origins are outside of Europe and have the most clean sheets (games without conceding goals). <br /> <strong>Query Runtime</strong>: 94.50 seconds</li>
           <li><strong>Ipswich Town Player Transfer News</strong>: Fetches all the transfer news related to players from Ipswich Town whose transfer status is either "Transfer In" or "Loan Out." <br /> <strong>Query Runtime</strong>: 20.06 seconds</li>
         </ul>
-        <h4>Analysis:</h4>
-        <p>The first two queries are performed on the statistics page, which includes multiple filters and a large table. These queries need to browse and filter results from this extensive dataset, contributing to their longer runtime.</p>
-        <p>The third query, on the other hand, operates on a smaller page with a more focused dataset, resulting in a significantly shorter runtime.</p>
-        <h4>Optimization:</h4>
-        <p>It is possible to shorten the times for the first two queries by using more efficient technologies or optimizing the database queries. Techniques such as indexing, query optimization, or improved data retrieval methods may help reduce the execution time.</p>
+        <h4>Required information query 1:</h4>
+        <p>List of London clubs.</p>
+        <p>List of players and the following information about them: country of origin, team, number of passes of all times.</p>
+        <h4>Required information query 2:</h4>
+        <p>List of players, role in the team, country of origin, amount of clean sheets</p>
+        <h4>Required information query 3:</h4>
+        <p>The list of players in the Ipswich Town transfer window, the transfer status of each player, link to the appropriate article.</p>
       </div>
     )
   },
