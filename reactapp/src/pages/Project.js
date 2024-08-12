@@ -123,7 +123,7 @@ const questions = [
     content: (
       <div>
         <p>Calculate the term frequency-inverse document frequency (tfIdf) for the first query, taking into account the frequency of each term in the query and across all documents.</p>
-        <p>QUERY 1: Retrieves the top 5 passers of all time (all seasons) for players of English origin who still play for teams in London.</p>
+        <p>QUERY 1: Retrieves the top 5 passers of all time (all seasons) for players of English origin who still play for clubs in London.</p>
         <p>Query terms are: Top, Pass, London, England, Player, Club, Seasons</p>
         <table border="1">
   <thead>
