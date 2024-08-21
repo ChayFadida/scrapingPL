@@ -9,6 +9,7 @@ from player import Player
 from enum import Enum
 from prettytable import PrettyTable
 import csv
+from urllib.parse import urljoin
 
 class StatType(Enum):
     APPEARANCES = "Appearances"
@@ -258,3 +259,247 @@ class PremierLeagueTransferScraper:
             self.driver.quit()
 
         return transfer_data
+    
+class PremierLeagueAwardScraper:
+    BASE_URL = "https://www.premierleague.com/awards"
+    BASE_URL2 = "https://www.premierleague.com/awards?at=1&aw=-1&se=489"
+    
+    def __init__(self, headless=True):
+        self.headless = headless
+        self.driver = self._initialize_driver()
+
+    def _initialize_driver(self):
+        options = Options()
+        options.add_argument('--no-sandbox')
+        if self.headless:
+            options.add_argument('--headless')
+        return webdriver.Chrome(options=options)
+
+    def handle_cookies(self):
+        try:
+            manage_cookies_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.ID, "onetrust-pc-btn-handler"))
+            )
+            manage_cookies_button.click()
+
+            accept_recommended_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.ID, "accept-recommended-btn-handler"))
+            )
+            accept_recommended_button.click()
+
+            time.sleep(10)
+
+            # Check for advertisement and close if present
+            self.close_advertisement()
+        except:
+            pass
+        
+    def scrape_table(self, html_content):
+        base_url = "https://www.premierleague.com/"
+        awards = []
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        # Locate the section that contains "Aston Villa"
+        awards_elems = soup.find_all('div', class_='award-card__wrapper')
+        if awards_elems:
+            for award in awards_elems:
+                links_dict = {}
+                buttons = award.find_all('a', class_='global-btn')
+                for button in buttons:
+                    link = button.get('href', '').strip()
+                    link = urljoin(base_url, link)
+                    text = button.get_text(strip=True)
+                    if 'profile' in text.lower():
+                        category = 'profile'
+                    else:
+                        category = 'news'
+                    if link.startswith('//'):
+                            link = link[2:]
+                    links_dict[category] = link
+                links_dict['award_type']  = award['data-team-reference']
+                awards.append(links_dict)
+        return awards
+            
+
+    def scrape_table2223(self, html_content):
+        base_url = "https://www.premierleague.com/"
+        awards = []
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        # Locate the section that contains "Aston Villa"
+        april_elem = soup.find('ul', class_='season-award__list')
+        awards_elems = april_elem.find_all('div', class_='award-card__wrapper')
+        if awards_elems:
+            for award in awards_elems:
+                links_dict = {}
+                buttons = award.find_all('a', class_='global-btn')
+                for button in buttons:
+                    link = button.get('href', '').strip()
+                    link = urljoin(base_url, link)
+                    text = button.get_text(strip=True)
+                    if 'profile' in text.lower():
+                        category = 'profile'
+                    else:
+                        category = 'news'
+                    if link.startswith('//'):
+                            link = link[2:]
+                    links_dict[category] = link
+                links_dict['award_type']  = award['data-team-reference']
+                awards.append(links_dict)
+        return awards
+    def close_advertisement(self):
+        try:
+            close_ad_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.ID, "advertClose"))
+            )
+            close_ad_button.click()
+            time.sleep(2)  # Give it a moment to close
+        except Exception as e:
+            print(f"No advertisement to close: {e}")
+
+    def scrape(self):
+        awards_data = []
+
+        try:
+            self.driver.get(self.BASE_URL)
+            self.handle_cookies()
+            html_content = self.driver.page_source
+            awards = self.scrape_table(html_content)
+            awards_data.extend(awards)
+            self.driver.get(self.BASE_URL2)
+            self.handle_cookies()
+            html_content = self.driver.page_source
+            awards = self.scrape_table2223(html_content)
+            awards_data.extend(awards)
+        finally:
+            self.driver.quit()
+
+        return awards_data
+    
+class PremierLeagueClubScraper:
+    base_url = ""
+    
+    def __init__(self,base_url, headless=True):
+        self.base_url = base_url
+        self.headless = headless
+        self.driver = self._initialize_driver()
+
+    def _initialize_driver(self):
+        options = Options()
+        options.add_argument('--no-sandbox')
+        if self.headless:
+            options.add_argument('--headless')
+        return webdriver.Chrome(options=options)
+
+    def handle_cookies(self):
+        try:
+            manage_cookies_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.ID, "onetrust-pc-btn-handler"))
+            )
+            manage_cookies_button.click()
+
+            accept_recommended_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.ID, "accept-recommended-btn-handler"))
+            )
+            accept_recommended_button.click()
+
+            time.sleep(10)
+
+            # Check for advertisement and close if present
+            self.close_advertisement()
+        except:
+            pass
+        
+    def scrape_table(self, html_content):
+        soup = BeautifulSoup(html_content, 'html.parser')
+        # Locate the section that contains "Aston Villa"
+        cols = soup.find_all('div', class_='player-overview__col')
+        if cols:
+            for col in cols:
+                lbael = None
+                label_elem = col.find('div', class_='player-overview__label')
+                if label_elem:
+                    label= label_elem.get_text(strip=True)
+                if label is not None and label =='Club':
+                    club_name = col.find('div', class_='player-overview__info').text.strip()
+                    return club_name
+        return None
+            
+
+    def close_advertisement(self):
+        try:
+            close_ad_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable((By.ID, "advertClose"))
+            )
+            close_ad_button.click()
+            time.sleep(2)  # Give it a moment to close
+        except Exception as e:
+            print(f"No advertisement to close: {e}")
+
+    def scrape(self):
+
+        try:
+            self.driver.get(self.base_url)
+            self.handle_cookies()
+            html_content = self.driver.page_source
+            return self.scrape_table(html_content)
+        finally:
+            self.driver.quit()
+# class PremierLeagueLondonScraper:
+#     base_url =''
+#     def __init__(self, base_url="https://www.premierleague.com/clubs", headless=True):
+#         self.base_url = base_url
+#         self.headless = headless
+#         self.driver = self._initialize_driver()
+
+#     def _initialize_driver(self):
+#         options = Options()
+#         options.add_argument('--no-sandbox')
+#         if self.headless:
+#             options.add_argument('--headless')
+#         return webdriver.Chrome(options=options)
+
+#     def handle_cookies(self):
+#         try:
+#             manage_cookies_button = WebDriverWait(self.driver, 10).until(
+#                 EC.element_to_be_clickable((By.ID, "onetrust-pc-btn-handler"))
+#             )
+#             manage_cookies_button.click()
+
+#             accept_recommended_button = WebDriverWait(self.driver, 10).until(
+#                 EC.element_to_be_clickable((By.ID, "accept-recommended-btn-handler"))
+#             )
+#             accept_recommended_button.click()
+
+#             time.sleep(10)
+
+#             self.close_advertisement()
+#         except Exception as e:
+#             print(f"Error handling cookies: {e}")
+
+#     def close_advertisement(self):
+#         try:
+#             close_ad_button = WebDriverWait(self.driver, 10).until(
+#                 EC.element_to_be_clickable((By.ID, "advertClose"))
+#             )
+#             close_ad_button.click()
+#             time.sleep(2)
+#         except Exception as e:
+#             print(f"No advertisement to close: {e}")
+
+#     def scrape(self):
+#         try:
+#             self.driver.get('https://'+self.base_url)
+#             self.handle_cookies()
+#             html_content = self.driver.page_source
+#             if self._contains_london(html_content):
+#                 return True
+#             else:
+#                 return False
+#         finally:
+#             self.driver.quit()
+
+#     def _contains_london(self, html_content):
+#         soup = BeautifulSoup(html_content, 'html.parser')
+#         text = soup.get_text()
+#         return text.lower().count('london') >= 2

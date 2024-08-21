@@ -1,6 +1,6 @@
 import time
 from prettytable import PrettyTable
-from plScraper import PremierLeagueStatScraper, StatType, PremierLeagueTransferScraper
+from plScraper import *
 import csv
 
 class PremierLeagueQueries:
@@ -188,8 +188,43 @@ class PremierLeagueQueries:
         end_time = time.time()
         duration = end_time - start_time
         print(f"Query run time: {duration:.2f} seconds")
+        
+    @staticmethod
+    def printPalyerAndManagerAwardsOutOfLondon(export_csv=False, filename="Player_Manager_OfTheMonth_Award.csv"):
+        start_time = time.time()
+        london_clubs = ["Arsenal", "Chelsea", "Tottenham Hotspur", "West Ham United", "Crystal Palace", "Fulham", "Brentford"]
+        query_results =[]
+        awardScraper = PremierLeagueAwardScraper(headless=True)
+        awards = awardScraper.scrape()
+        for award in awards:
+            clubScraper = PremierLeagueClubScraper(base_url=award['profile'], headless=True)
+            club = clubScraper.scrape()
+            if club not in london_clubs and ( award['award_type'].startswith('PLAYER_OF_THE_MONTH') or award['award_type'].startswith('MANAGER_OF_THE_MONTH')):
+                award['club'] = club
+                query_results.append(award)
+            
+        table = PrettyTable()
+        table.field_names = ["Award", "Club","Url"]
+        for query_result in query_results:
+                table.add_row([query_result['award_type'], query_result['club'],query_result['news']])
+
+        print(f"\n\nTransfer In and Loan out in Ipswich Town")
+        print(table)
+
+        if export_csv:
+            with open(filename, mode='w', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                writer.writerow(["Award", "Club","Url"])
+                for query_result in query_results:
+                    writer.writerow([query_result['award_type'], query_result['club'],query_result['news']])
+            print(f"Data has been exported to {filename}")
+
+        end_time = time.time()
+        duration = end_time - start_time
+        print(f"Query run time: {duration:.2f} seconds")
 
 if __name__ == "__main__":
-    PremierLeagueQueries.printTopEnglandPlayersByPassesForLondonClubs(5, export_csv=True)
-    PremierLeagueQueries.printTopGoalkeepersByCleanSheetsOutsideEurope(10, export_csv=True)
-    PremierLeagueQueries.printTransfersIpswichTown(export_csv=True)
+    # PremierLeagueQueries.printTopEnglandPlayersByPassesForLondonClubs(5, export_csv=True)
+    # PremierLeagueQueries.printTopGoalkeepersByCleanSheetsOutsideEurope(10, export_csv=True)
+    # PremierLeagueQueries.printTransfersIpswichTown(export_csv=True)
+    PremierLeagueQueries.printPalyerAndManagerAwardsOutOfLondon(export_csv=True)

@@ -12,14 +12,19 @@ import matplotlib.pyplot as plt
 
 # List of URLs
 urls = [
-    "https://www.itfc.co.uk/news/2024/june/30/omari-is-back",
-    "https://www.itfc.co.uk/news/2024/july/01/town-sign-ben-johnson",
-    "https://www.itfc.co.uk/news/2024/july/12/greaves-becomes-third-signing",
-    "https://www.itfc.co.uk/news/2024/july/13/liam-delap-joins-town",
-    "https://www.itfc.co.uk/news/2024/july/17/town-sign-keeper-muric",
-    "https://www.itfc.co.uk/news/2024/august/01/conor-townsend-joins-ipswich-town",
-    "https://www.itfc.co.uk/news/2024/august/05/loan-move-for-elkan",
+    "https://www.premierleague.com/news/3998819",
+    "https://www.premierleague.com/news/3960710",
+    "https://www.premierleague.com/news/3921955",
+    "https://www.premierleague.com/news/3894601",
+    "https://www.premierleague.com/news/3893153",
+    "https://www.premierleague.com/news/3853193",
+    "https://www.premierleague.com/news/3808489",
+    "https://www.premierleague.com/news/3808575",
+    "https://www.premierleague.com/news/3776619",
+    "https://www.premierleague.com/news/3331263",
+    "https://www.premierleague.com/news/3331249"
 ]
+
 def trim_url(url):
     # Split the URL by '/' and get the last part
     return url.rstrip('/').split('/')[-1]
