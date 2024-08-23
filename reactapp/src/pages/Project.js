@@ -122,147 +122,228 @@ const questions = [
     text: '7. Choose one of the queries, and calculate tfIdf of the concepts in the query.',
     content: (
       <div>
-        <p>Calculate the term frequency-inverse document frequency (tfIdf) for the first query, taking into account the frequency of each term in the query and across all documents.</p>
-        <p>QUERY 1: Retrieves the top 5 passers of all time (all seasons) for players of English origin who still play for clubs in London.</p>
-        <p>Query terms are: Top, Pass, London, England, Player, Club, Seasons</p>
+        <p>Calculate the term frequency-inverse document frequency (tfIdf) for the chosen query, taking into account the frequency of each term in the query and across all documents.</p>
+        <p>QUERY III: Retrieves all "Player of the Month" awards given in April to players managed by a London-based manager.</p>
+        <p>Query terms are: Player, Award, Month, Manager, April, London</p>
         <table border="1">
-  <thead>
-    <tr>
-      <th>Word</th>
-      <th>P1</th>
-      <th>P2</th>
-      <th>P3</th>
-      <th>P4</th>
-      <th>P5</th>
-      <th>Dfi</th>
-      <th>D/dfi</th>
-      <th>IDF</th>
-      <th>W-d1</th>
-      <th>W-d2</th>
-      <th>W-d3</th>
-      <th>W-d4</th>
-      <th>W-d5</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Top</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>5</td>
-      <td>26375/5</td>
-      <td>log⁡(26375/5)=3.722</td>
-      <td>3.722</td>
-      <td>3.722</td>
-      <td>3.722</td>
-      <td>3.722</td>
-      <td>3.722</td>
-    </tr>
-    <tr>
-      <td>Pass</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-</td>
-      <td>-</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>London</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-</td>
-      <td>-</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>England</td>
-      <td>6</td>
-      <td>6</td>
-      <td>6</td>
-      <td>6</td>
-      <td>6</td>
-      <td>30</td>
-      <td>26375/30</td>
-      <td>log⁡(26375/30)=2.944</td>
-      <td>17.664</td>
-      <td>17.664</td>
-      <td>17.664</td>
-      <td>17.664</td>
-      <td>17.664</td>
-    </tr>
-    <tr>
-      <td>Player</td>
-      <td>3</td>
-      <td>7</td>
-      <td>4</td>
-      <td>7</td>
-      <td>3</td>
-      <td>24</td>
-      <td>26375/24</td>
-      <td>log⁡(26375/24)=3.04</td>
-      <td>9.12</td>
-      <td>21.8</td>
-      <td>12.16</td>
-      <td>21.8</td>
-      <td>9.12</td>
-    </tr>
-    <tr>
-      <td>Club</td>
-      <td>8</td>
-      <td>14</td>
-      <td>10</td>
-      <td>11</td>
-      <td>9</td>
-      <td>52</td>
-      <td>26375/52</td>
-      <td>log⁡(26375/52)=2.705</td>
-      <td>21.64</td>
-      <td>37.87</td>
-      <td>27.05</td>
-      <td>29.755</td>
-      <td>24.345</td>
-    </tr>
-    <tr>
-      <td>Seasons</td>
-      <td>2</td>
-      <td>4</td>
-      <td>4</td>
-      <td>3</td>
-      <td>2</td>
-      <td>15</td>
-      <td>26375/15</td>
-      <td>log⁡(26375/15)=3.245</td>
-      <td>6.490</td>
-      <td>9.735</td>
-      <td>12.98</td>
-      <td>12.98</td>
-      <td>6.490</td>
-    </tr>
-  </tbody>
-</table>
-
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>P1</th>
+              <th>P2</th>
+              <th>P3</th>
+              <th>P4</th>
+              <th>P5</th>
+              <th>P6</th>
+              <th>P7</th>
+              <th>P8</th>
+              <th>P9</th>
+              <th>P10</th>
+              <th>Dfi</th>
+              <th>D/dfi</th>
+              <th>IDF</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Player</td>
+              <td>8</td>
+              <td>9</td>
+              <td>13</td>
+              <td>13</td>
+              <td>7</td>
+              <td>7</td>
+              <td>11</td>
+              <td>6</td>
+              <td>6</td>
+              <td>11</td>
+              <td>91</td>
+              <td>26375/91</td>
+              <td>log(26375/91) = 2.46</td>
+            </tr>
+            <tr>
+              <td>Award</td>
+              <td>6</td>
+              <td>12</td>
+              <td>8</td>
+              <td>8</td>
+              <td>12</td>
+              <td>11</td>
+              <td>6</td>
+              <td>4</td>
+              <td>2</td>
+              <td>5</td>
+              <td>74</td>
+              <td>26375/74</td>
+              <td>log(26375/74) = 2.55</td>
+            </tr>
+            <tr>
+              <td>Month</td>
+              <td>12</td>
+              <td>17</td>
+              <td>12</td>
+              <td>12</td>
+              <td>15</td>
+              <td>15</td>
+              <td>14</td>
+              <td>15</td>
+              <td>4</td>
+              <td>9</td>
+              <td>124</td>
+              <td>26375/124</td>
+              <td>log(26375/124) = 2.32</td>
+            </tr>
+            <tr>
+              <td>London</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>April</td>
+              <td>5</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>4</td>
+              <td>12</td>
+              <td>26375/12</td>
+              <td>log(26375/12) = 3.34</td>
+            </tr>
+            <tr>
+              <td>Manager</td>
+              <td>10</td>
+              <td>8</td>
+              <td>2</td>
+              <td>2</td>
+              <td>10</td>
+              <td>6</td>
+              <td>3</td>
+              <td>8</td>
+              <td>0</td>
+              <td>1</td>
+              <td>50</td>
+              <td>26375/50</td>
+              <td>log(26375/50) = 2.72</td>
+            </tr>
+          </tbody>
+        </table>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>W-1</th>
+              <th>W-2</th>
+              <th>W-3</th>
+              <th>W-4</th>
+              <th>W-5</th>
+              <th>W-6</th>
+              <th>W-7</th>
+              <th>W-8</th>
+              <th>W-9</th>
+              <th>W-10</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Player</td>
+              <td>19.68</td>
+              <td>22.14</td>
+              <td>31.98</td>
+              <td>31.98</td>
+              <td>17.22</td>
+              <td>17.22</td>
+              <td>27.06</td>
+              <td>14.76</td>
+              <td>14.76</td>
+              <td>27.06</td>
+            </tr>
+            <tr>
+              <td>Award</td>
+              <td>15.3</td>
+              <td>30.6</td>
+              <td>20.4</td>
+              <td>20.4</td>
+              <td>30.6</td>
+              <td>28.05</td>
+              <td>15.3</td>
+              <td>10.2</td>
+              <td>5.1</td>
+              <td>12.75</td>
+            </tr>
+            <tr>
+              <td>Month</td>
+              <td>27.84</td>
+              <td>39.44</td>
+              <td>27.84</td>
+              <td>27.84</td>
+              <td>34.8</td>
+              <td>34.8</td>
+              <td>32.48</td>
+              <td>34.8</td>
+              <td>9.28</td>
+              <td>20.88</td>
+            </tr>
+            <tr>
+              <td>London</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>April</td>
+              <td>16.7</td>
+              <td>3.34</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>6.68</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>13.36</td>
+            </tr>
+            <tr>
+              <td>Manager</td>
+              <td>27.2</td>
+              <td>21.76</td>
+              <td>5.44</td>
+              <td>5.44</td>
+              <td>27.2</td>
+              <td>16.32</td>
+              <td>8.16</td>
+              <td>21.76</td>
+              <td>0</td>
+              <td>2.72</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     )
-  },
+  }
+  ,
   {
     id: 'Q8',
     text: '8. Are there hubs in the returned pages? Authorities?',
@@ -280,13 +361,16 @@ const questions = [
       <div>
         <p>Here are some of the news articles from Ipswich Town's official website that were used for PageRank analysis PageRank for each page alpha=0.85: </p>
         <ul>
-        <li><a href="https://www.itfc.co.uk/news/2024/june/30/omari-is-back" target="_blank" rel="noopener noreferrer">Omari Is Back (June 30, 2024)</a>: 0.0823</li>
-        <li><a href="https://www.itfc.co.uk/news/2024/july/01/town-sign-ben-johnson" target="_blank" rel="noopener noreferrer">Town Sign Ben Johnson (July 1, 2024)</a>: 0.0823</li>
-        <li><a href="https://www.itfc.co.uk/news/2024/july/12/greaves-becomes-third-signing" target="_blank" rel="noopener noreferrer">Greaves Becomes Third Signing (July 12, 2024)</a>: 0.0823</li>
-        <li><a href="https://www.itfc.co.uk/news/2024/july/13/liam-delap-joins-town" target="_blank" rel="noopener noreferrer">Liam Delap Joins Town (July 13, 2024)</a>: 0.0823</li>
-        <li><a href="https://www.itfc.co.uk/news/2024/july/17/town-sign-keeper-muric" target="_blank" rel="noopener noreferrer">Town Sign Keeper Muric (July 17, 2024)</a>: 0.0823</li>
-        <li><a href="https://www.itfc.co.uk/news/2024/august/01/conor-townsend-joins-ipswich-town" target="_blank" rel="noopener noreferrer">Conor Townsend Joins Ipswich Town (August 1, 2024)</a>: 0.0823</li>
-        <li><a href="https://www.itfc.co.uk/news/2024/august/05/loan-move-for-elkan" target="_blank" rel="noopener noreferrer">Loan Move for Elkan (August 5, 2024)</a>: 0.504</li>
+        <li><a href="https://www.premierleague.com/news/3998819" target="_blank" rel="noopener noreferrer">Page Link</a>: 0.034</li>
+        <li><a href="https://www.premierleague.com/news/3960710" target="_blank" rel="noopener noreferrer">Page Link</a>: 0.041</li>
+        <li><a href="https://www.premierleague.com/news/3921955" target="_blank" rel="noopener noreferrer">Page Link</a>: 0.034</li>
+        <li><a href="https://www.premierleague.com/news/3894601" target="_blank" rel="noopener noreferrer">Page Link</a>: 0.048</li>
+        <li><a href="https://www.premierleague.com/news/3893163" target="_blank" rel="noopener noreferrer">Page Link</a>: 0.053</li>
+        <li><a href="https://www.premierleague.com/news/3853183" target="_blank" rel="noopener noreferrer">Page Link</a>: 0.075</li>
+        <li><a href="https://www.premierleague.com/news/3808489" target="_blank" rel="noopener noreferrer">Page Link</a>: 0.089</li>
+        <li><a href="https://www.premierleague.com/news/3808575" target="_blank" rel="noopener noreferrer">Page Link</a>: 0.139</li>
+        <li><a href="https://www.premierleague.com/news/3776619" target="_blank" rel="noopener noreferrer">Page Link</a>: 0.034</li>
+        <li><a href="https://www.premierleague.com/news/3331263" target="_blank" rel="noopener noreferrer">Page Link</a>: 0.226</li>
       </ul>
       <p>
         <a href="https://github.com/ChayFadida/scrapingPL/blob/master/scraper/PageRankQ3.py" target="_blank" rel="noopener noreferrer">
@@ -305,52 +389,111 @@ const questions = [
     content: (
       <div>
         <p>According to the PageRank results, we see that only one page is ranked significantly higher than the rest. To assess the relevance of the results, we asked two users to mark the results according to their relevance:</p>
+        <ul>
+          <li><strong>Total relevant:</strong> 12. There are a total of 12 relevant results, which include players/coaches who, while receiving the title player/coach of the month, played/coached in teams outside of London.</li>
+          <li><strong>How to select the relevant pages:</strong>
+            <ol>
+              <li>User A is an adult man, an ardent fan of football and of the English league in particular. This user was able to distinguish and identify that some of the query results are players who in the relevant season did not play/train in a team in London but currently appear as belonging to a team from London because they moved there this summer.</li>
+              <li>User B is a boy, also an ardent fan of the English league but does not yet master the geography of England and therefore did not recognize that players/coaches from Manchester United do not belong to teams from London.</li>
+            </ol>
+          </li>
+        </ul>
+        <table border="1">
+        <thead>
+          <tr>
+            <th>Users</th>
+            <th>P1</th>
+            <th>P2</th>
+            <th>P3</th>
+            <th>P4</th>
+            <th>P5</th>
+            <th>P6</th>
+            <th>P7</th>
+            <th>P8</th>
+            <th>P9</th>
+            <th>P10</th>
+            <th>Precision</th>
+            <th>Recall</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>User A</td>
+            <td>R</td>
+            <td>R</td>
+            <td>R</td>
+            <td>R</td>
+            <td></td>
+            <td>R</td>
+            <td>R</td>
+            <td>R</td>
+            <td>R</td>
+            <td></td>
+            <td>8/10=0.8</td>
+            <td>8/12=0.66</td>
+          </tr>
+          <tr>
+            <td>User B</td>
+            <td>R</td>
+            <td>R</td>
+            <td></td>
+            <td>R</td>
+            <td>R</td>
+            <td></td>
+            <td></td>
+            <td>R</td>
+            <td>R</td>
+            <td>R</td>
+            <td>7/10=0.7</td>
+            <td>7/12=0.58</td>
+          </tr>
+        </tbody>
+      </table>
+        <p>Based on the feedback and the Precision/Recall calculation, the queries can be improved by adjusting additional ranking criteria such as adding parameters of personal relevance to users. For example, return all messages about player/coach of the month between April 2023 and April 2024 for people who were not connected to any clubs in London at the time of the announcement. Ensure that club affiliation is verified based on the location of the club during the month of the award and excludes anyone who has moved to or from clubs in London after the date of the announcement.</p>
+        <p>In addition, you can add a list of the clubs in London in order to completely avoid confusion.</p>
+      </div>
+    )
+  },
+  {
+    id: 'Q12',
+    text: '12. On 12.8 you will present the page from section 11, which includes sections 1-10. You will receive feedback from your friends. Answer in the table:',
+    content: (
+      <div>
         <table border="1">
           <thead>
             <tr>
-            <th>Users</th>
-              <th>P1</th>
-              <th>P2</th>
-              <th>P3</th>
-              <th>P4</th>
-              <th>P5</th>
-              <th>P6</th>
-              <th>P7</th>
-              <th>Precision</th>
-              <th>Recall</th>
+              <th>What change was suggested?</th>
+              <th>Do you think there is room for improvement? If yes, explain how it can be improved. If not, justify!</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>User A</td>
-              <td>R</td>
-              <td>R</td>
-              <td>R</td>
-              <td>R</td>
-              <td>R</td>
-              <td>R</td>
-              <td></td>
-              <td>6/7=0.857</td>
-              <td>6/6=1</td>
+              <td>"They used Selenium, and it caused us a lot of problems, so maybe I would improve that."</td>
+              <td>In our project, the use of Selenium was without any problems.</td>
             </tr>
             <tr>
-              <td>User B</td>
-              <td>R</td>
-              <td>R</td>
-              <td>R</td>
-              <td>R</td>
-              <td>R</td>
-              <td>R</td>
-              <td>R</td>
-              <td>7/7=1</td>
-              <td>7/7=1</td>
+              <td>"Give a little more freedom in the queries so that they don’t return very specific results and let the user filter."</td>
+              <td>We agree with the comment, but in fact, the implementation of the queries behind the scenes is based on flexibility in the code, so if we want to run the same query with a different filter, we can refer to the same class but with the new filter type that we want to search for.</td>
+            </tr>
+            <tr>
+              <td>"Response time speed."</td>
+              <td>We don't think this needs improvement because, relative to the amount of information on the site, our queries return results quite quickly.</td>
+            </tr>
+            <tr>
+              <td>"Improve Selenium search times, other technologies can be used to improve runtime."</td>
+              <td>Since the site contains ads, notifications, and all tables in queries i and ii are on the same URL, to reach the relevant information, we have to perform "clicks" within the site. To simulate a user clicking on the site, we have to use the Selenium package. Additionally, to avoid being flagged as bots and getting kicked off the site, we must wait a certain time between clicks, hence the longer run times, which cannot be improved.</td>
+            </tr>
+            <tr>
+              <td>"I didn’t find anything to improve, maybe correct the recall calculation."</td>
+              <td>Following the improvement of the third query, the recall calculation was also corrected 😊</td>
             </tr>
           </tbody>
         </table>
-        <p>Based on the feedback and the Precision/Recall calculation, the queries can be improved by adjusting additional ranking criteria such as adding parameters of personal relevance to the users. For example, a parameter for "Is the player in the senior squad or the youth team" could be added. This change will allow for a better matching of search results to user preferences and can improve the quality of searches.</p>
       </div>
     )
   }
+  
+  
   
 ];
 
