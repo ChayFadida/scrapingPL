@@ -4,15 +4,21 @@ from collections import Counter
 
 # List of URLs to scrape
 urls = [
-    "https://www.premierleague.com/players/4617/player/overview",
-    "https://www.premierleague.com/players/15202/player/overview",
-    "https://www.premierleague.com/players/8897/player/overview",
-    "https://www.premierleague.com/players/4316/player/overview",
-    "https://www.premierleague.com/players/3929/player/overview"
+    "https://www.premierleague.com/news/3998819",
+    "https://www.premierleague.com/news/3960710",
+    "https://www.premierleague.com/news/3921955",
+    "https://www.premierleague.com/news/3921955",
+    "https://www.premierleague.com/news/3893153",
+    "https://www.premierleague.com/news/3853193",
+    "https://www.premierleague.com/news/3808489",
+    "https://www.premierleague.com/news/3808575",
+    "https://www.premierleague.com/news/3776619",
+    "https://www.premierleague.com/news/3331263"
+    
 ]
 
 # Words to search for
-search_words = ["Top", "Pass", "London", "England", "Player", "Club", "Season"]
+search_words = ["Player", "Award","Month", "London", "April", "Manager"]
 
 # Function to count the words
 def count_words_in_page(url, search_words):
